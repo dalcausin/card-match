@@ -1,0 +1,101 @@
+/*set background position to select the suit from the svg*/
+body {
+  background-color: green;
+  height: 100%;
+}
+
+h1 {
+  font-size: 4em;
+  text-align: center;
+  color: #ffffff;
+  font-family: Century,serif;
+  padding: .5em;
+}
+
+.game {
+  width: 75%;
+  margin: auto;
+  height: auto;
+}
+
+.card {
+  height: 160px;
+  float: left;
+  margin-left: 3em;
+  margin-bottom: 2em;
+}
+
+.back {
+  z-index: -1;
+  position: relative;
+  top: -160px;
+  height: 160px;
+}
+
+.back img {
+  width: auto;
+  border-radius:.7em;
+  height: 160px;
+}
+
+.front {
+  position: relative;
+  z-index: 1;
+  width: auto;
+  border-radius:.7em;
+  height: 160px;
+  background-color: white;
+}
+
+
+.front .spade {
+  position: relative;
+  top: 20px;
+  z-index: 1;
+  width: auto;
+  border-radius:.7em;
+  height: 120px;
+  background-image: url('../img/french-suits.svg');
+  background-size: 230px 400px;
+  background-repeat: no-repeat;
+  background-position: -10% 30%; /*spade*/
+}
+
+.front .heart {
+  position: relative;
+  top: 20px;
+  z-index: 1;
+  width: auto;
+  border-radius:.7em;
+  height: 120px;
+  background-image: url('../img/french-suits.svg');
+  background-size: 230px 400px;
+  background-repeat: no-repeat;
+  background-position: 100% 30%; /*heart*/
+}
+
+.front .diamond {
+  position: relative;
+  top: 20px;
+  z-index: 1;
+  width: auto;
+  border-radius:.7em;
+  height: 120px;
+  background-image: url('../img/french-suits.svg');
+  background-size: 230px 400px;
+  background-repeat: no-repeat;
+  background-position: -10% 70%; /*diamond*/
+}
+
+.front .club {
+  position: relative;
+  top: 20px;
+  z-index: 1;
+  width: auto;
+  border-radius:.7em;
+  height: 120px;
+  background-image: url('../img/french-suits.svg');
+  background-size: 230px 400px;
+  background-repeat: no-repeat;
+  background-position: 100% 70%; /*club*/
+}
