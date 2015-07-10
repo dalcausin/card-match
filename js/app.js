@@ -1,2 +1,2 @@
-var gameElement = document.getElementById('game');
+var gameElement = document.getElementById('table');
 gameElement.Game();

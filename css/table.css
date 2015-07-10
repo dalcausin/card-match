@@ -12,14 +12,16 @@ h1 {
   padding: .5em;
 }
 
-.game {
+.table {
   width: 75%;
   margin: auto;
   height: auto;
+  position: relative;
 }
 
 .card {
   height: 160px;
+  width: 114px;
   float: left;
   margin-left: 3em;
   margin-bottom: 2em;
@@ -28,14 +30,12 @@ h1 {
 .back {
   z-index: -1;
   position: relative;
+  background-image:url('../img/bicycle-back.jpg');
+  background-size: cover;
   top: -160px;
+  border-radius: .7em;
   height: 160px;
-}
-
-.back img {
-  width: auto;
-  border-radius:.7em;
-  height: 160px;
+  width: 114px;
 }
 
 .front {
