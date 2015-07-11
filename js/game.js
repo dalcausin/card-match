@@ -2,7 +2,8 @@ Element.prototype.Game = function(){
 
   var game = this,
       suits = ["heart","heart","heart","heart","diamond","diamond","diamond","diamond","club","club","club","club","spade","spade","spade","spade"],
-      cardsOnTable = [];
+      cardsOnTable = [],
+      pairs = 0;
 
   // Create a shuffle function
   this.shuffle = function(array) {
@@ -17,10 +18,6 @@ Element.prototype.Game = function(){
     return array; // returns shuffled length of cards to the same array
 
   };
-
-  /* Checks the shuffle function is working.
-      var test = game.shuffle(suits);
-      console.log(test); */
 
   // Creates a card, front, back and suit div while the suits array is greater than zero
   this.setCards = function(){
@@ -69,13 +66,7 @@ Element.prototype.Game = function(){
 
   };
 
-  // A forEach loop, using the shuffled suits array to deal cards
-  // this.dealCards = function() {
-  //
-  //   suits.forEach(this.setCards);
-  //
-  // };
-
+  // Stores the two clicks, compares the suits and if no match resets display to the back of the card
   this.onClick = function(ev) {
 
     // store event target
@@ -92,101 +83,53 @@ Element.prototype.Game = function(){
     var firstClicked = cardsOnTable[0];
 
     // compare the two cards in cardsOnTable array
-    // if they don't match reset their zIndex to show back of card and empty the cardsOnTable array
-    // if they do match, empty the cardsOnTable array
+
+    // if they match add tally to pairs counter
+    if(cardsOnTable.length>1 && lastClicked.dataset.tag==firstClicked.dataset.tag){
+      pairs++;
+    };
+
     setTimeout(function(){
+      // if they don't match reset their zIndex to show back of card and empty the cardsOnTable array
       if(lastClicked.dataset.tag!=firstClicked.dataset.tag){
         firstClicked.style.zIndex = '10';
         lastClicked.style.zIndex = '10';
         cardsOnTable.length = 0;
-        console.log(cardsOnTable);
       }
-      else{
+      else {
         cardsOnTable.length = 0;
       }
-    },2000);
+    // apply delay to function to allow user to view card
+    },1000);
 
+    // if all cards are paired (8 pairs) then you are a rock lobster
+    if (pairs===8){
+      document.getElementById('game_name').innerHTML = "YOU ROCK LOBSTER!";
+    };
+
+    // *** Check cardsOnTable and pairs*** //
+    console.log(cardsOnTable.length);
+    console.log('pairs tally '+pairs);
   };
 
+  // initializes the game
   this.init = function(){
 
-    // apply shuffle function to suits array
+    // Call shuffle function to suits array
     this.shuffle(suits);
 
-    // check that the array is shuffled
+    // *** Check that the array is shuffled ***
     console.log(this.shuffle(suits));
 
+    // Call setCards Function
     this.setCards();
-    // dealCards function
-    // this.dealCards();
 
+    // add event listener and call onClick function
     game.addEventListener("click",this.onClick);
 
-
-
-    // event listener
-    // game.addEventListener("click",
-    //
-    // function(ev){
-    //
-    //   var target = ev.target
-    //
-    //   if(target.className =='back'){
-    //     // counter of clickNum
-    //     clickNum++;
-    //
-    //     target.style.zIndex = '-1';
-    //
-    //     var selected = ev.target.dataset.tag;
-    //     cardsShown.push(selected);
-    //
-    //     console.log(cardsShown);
-    //
-    //     if(clickNum%2==0){
-    //       console.log('clicktwo')
-    //       var firstCard = cardsShown[cardsShown.length-2];
-    //       var secondCard = cardsShown[cardsShown.length-1];
-    //       if (firstCard === secondCard){
-    //         console.log(true)
-    //       }
-    //
-    //     }
-    //
-    //     // if clicks are less than one or modulo is true
-    //     // if (clickNum<=1||clickNum%2){
-    //     //   // create var that stores the suit value
-    //     //   var clickOne = ev.target.dataset.tag;
-    //     //   firstClick.push(clickOne);
-    //     //   var clickOneValue = firstClick[firstClick.length-1];
-    //     //
-    //     //   console.log(firstClick);
-    //     //   console.log(clickNum);
-    //     //   console.log(firstClick[firstClick.length-1]);
-    //     //
-    //     //   if (clickNum%2==0){
-    //     //     console.log(true);
-    //     //     var clickTwo = ev.target.dataset.tag;
-    //     //     secondClick.push(clickTwo);
-    //     //     var clickTwoValue = secondClick[secondClick.length-1];
-    //     //
-    //     //     console.log(secondClick);
-    //     //     console.log(clickNum);
-    //     //     console.log(secondClick[secondClick.length-1]);
-    //     //   };
-    //     // };
-    //   };
-
-    // });
-
-    // this.dealCards();
-
-    // check the value of the card matches the second card
-    // if match=true then display front of card
-    // else display back of card
-
-    // if cards shown array == 0
   };
 
+  // Call init function
   this.init();
 
 };
