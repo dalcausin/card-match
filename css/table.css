@@ -17,41 +17,54 @@ h1 {
   margin: auto;
   height: auto;
   position: relative;
+  perspective: 800px;
+}
+
+.card, .front, .back {
+  height: 160px;
+  width: 114px;
+  backface-visibility: hidden;
 }
 
 .card {
-  height: 160px;
-  width: 114px;
   float: left;
   margin-left: 3em;
   margin-bottom: 2em;
+  background:;
+  transform-style: preserve-3d;
+  transition: all 1.0s linear;
+}
+
+.back.flipped {
+  transform: rotateY(180deg);
+  transition: all .5s linear;
 }
 
 .back {
-  z-index: -1;
+  z-index: 20;
   position: relative;
   background-image:url('../img/bicycle-back.jpg');
   background-size: cover;
-  top: -160px;
+  top: 0px;
   border-radius: .7em;
-  height: 160px;
-  width: 114px;
+  transform: rotateY(0deg);
 }
 
 .front {
   position: relative;
-  z-index: 1;
+  top: -160px;
+  /*z-index: 1;*/
   width: auto;
   border-radius:.7em;
-  height: 160px;
   background-color: white;
+  transform: rotateY(0deg);
 }
 
 
 .front .spade {
   position: relative;
   top: 20px;
-  z-index: 1;
+  /*z-index: 1;*/
   width: auto;
   border-radius:.7em;
   height: 120px;
@@ -59,12 +72,14 @@ h1 {
   background-size: 230px 400px;
   background-repeat: no-repeat;
   background-position: -10% 30%; /*spade*/
+  transform: rotateY(180deg);
+
 }
 
 .front .heart {
   position: relative;
   top: 20px;
-  z-index: 1;
+  /*z-index: 1;*/
   width: auto;
   border-radius:.7em;
   height: 120px;
@@ -72,12 +87,13 @@ h1 {
   background-size: 230px 400px;
   background-repeat: no-repeat;
   background-position: 100% 30%; /*heart*/
+  transform: rotateY(180deg);
 }
 
 .front .diamond {
   position: relative;
   top: 20px;
-  z-index: 1;
+  /*z-index: 1;*/
   width: auto;
   border-radius:.7em;
   height: 120px;
@@ -85,12 +101,13 @@ h1 {
   background-size: 230px 400px;
   background-repeat: no-repeat;
   background-position: -10% 70%; /*diamond*/
+  transform: rotateY(180deg);
 }
 
 .front .club {
   position: relative;
   top: 20px;
-  z-index: 1;
+  /*z-index: 1;*/
   width: auto;
   border-radius:.7em;
   height: 120px;
@@ -98,4 +115,5 @@ h1 {
   background-size: 230px 400px;
   background-repeat: no-repeat;
   background-position: 100% 70%; /*club*/
+  transform: rotateY(180deg);
 }

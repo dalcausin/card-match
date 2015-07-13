@@ -49,15 +49,15 @@ Element.prototype.Game = function(){
       back.dataset.tag = suitAssign;
 
       // append the front and back to the card, append the suit to the front;
-      card.appendChild(front);
       card.appendChild(back);
+      card.appendChild(front);
       front.appendChild(suit);
 
       // then reduce array by last item added to the div above
       suits.pop();
 
       // display the back of the card ready for gameplay
-      back.style.zIndex = '2';
+      back.style.visiblity = 'visible';
 
     };
 
@@ -71,9 +71,12 @@ Element.prototype.Game = function(){
 
     // store event target
     var target = ev.target;
+    var c = target.classList
 
     // set target (ie card) z-index to -10 to show suit
-    target.style.zIndex = '-10';
+    if(c.contains('back')==true){
+      target.classList.add('flipped');
+    }
 
     // push card to cardsOnTable array
     cardsOnTable.push(target);
@@ -82,6 +85,7 @@ Element.prototype.Game = function(){
     var lastClicked = cardsOnTable[cardsOnTable.length-1];
     var firstClicked = cardsOnTable[0];
 
+    console.log(firstClicked);
     // compare the two cards in cardsOnTable array
 
     // if they match add tally to pairs counter
@@ -89,17 +93,17 @@ Element.prototype.Game = function(){
       pairs++;
     };
 
+    // if they don't match reset their zIndex to show back of card and empty the cardsOnTable array
     setTimeout(function(){
-      // if they don't match reset their zIndex to show back of card and empty the cardsOnTable array
       if(lastClicked.dataset.tag!=firstClicked.dataset.tag){
-        firstClicked.style.zIndex = '10';
-        lastClicked.style.zIndex = '10';
+        console.log('no match');
+        firstClicked.classList.remove('flipped');
+        lastClicked.classList.remove('flipped');
         cardsOnTable.length = 0;
       }
       else {
         cardsOnTable.length = 0;
       }
-    // apply delay to function to allow user to view card
     },1000);
 
     // if all cards are paired (8 pairs) then you are a rock lobster
