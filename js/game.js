@@ -129,7 +129,7 @@ Element.prototype.Game = function(){
     this.setCards();
 
     // add event listener and call onClick function
-    game.addEventListener("click",this.onClick);
+    game.addEventListener("mouseup",this.onClick);
 
   };
 
